@@ -33,9 +33,17 @@ public class Integracion {
     public void llenarTablaY() {
         System.out.print(ANSI_YELLOW + "AVISO!!! LOS DATOS CON MAS DE 2 DECIMALES SE MOSTRARAN REDONDEADOS\n" + ANSI_RESET);
         System.out.println("Ingresa los datos de [Y]...");
+        llenado:
         for (int i = 0; i < filaY.length; i++) {
-            System.out.printf("Y[%d]: ", i);
-            filaY[i] = leer.nextFloat();
+            try {
+                System.out.printf("Y[%d]: ", i);
+                filaY[i] = leer.nextFloat();
+            } catch (InputMismatchException e) {
+                System.out.println(ANSI_REED + "Solo se aceptan numeros... Vuelve a intentarlo" + ANSI_RESET);
+                leer.nextLine();
+                i--;
+                continue llenado;
+            }
         }
     }
 
@@ -60,12 +68,7 @@ public class Integracion {
         do {
             try {
                 System.out.print("Ingrese el valor incial de [X]: ");
-                inicial = leer.nextFloat();
-                if (inicial >= 0) {
-                    return inicial;
-                } else {
-                    System.out.println(ANSI_REED + "El valor inicial debe ser positivo...Vuelve a intentarlo" + ANSI_RESET);
-                }
+                return leer.nextFloat();
             } catch (InputMismatchException e) {
                 System.out.println(ANSI_REED + "Solo se aceptan numeros... Vuelve a intentarlo" + ANSI_RESET);
                 leer.nextLine();
@@ -81,7 +84,7 @@ public class Integracion {
         System.out.printf("|     " + ANSI_YELLOW + "I"+ ANSI_RESET + "     |     " + ANSI_YELLOW + "X" + ANSI_RESET + "     |     " + ANSI_YELLOW + "Y" + ANSI_RESET + "     |%n");
         System.out.printf("+-----------+-----------+-----------+%n");
         for (int i = 0; i < filaX.length; i++) {
-            System.out.printf("|    %-5d  |    %-5.2f  |    %-5.2f  |%n", i , filaX[i], filaY[i]);
+            System.out.printf("|     %-4d  | %-9.2f | %-9.2f |%n", i , filaX[i], filaY[i]);
         }
         System.out.printf("+-----------+-----------+-----------+%n");
     }
