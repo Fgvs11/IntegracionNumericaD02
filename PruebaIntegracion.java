@@ -7,13 +7,15 @@ public class PruebaIntegracion {
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_REED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
 
 	public static void main(String args[]) {
 
 		Integracion inte = new Integracion(validarCant());
 		inte.ingresoDatos();
 		inte.imprimirTabla();
-
+		double ans = inte.IntegracionNumerica();
+		System.out.printf(ANSI_GREEN + "El resultado es: %.4f" +ANSI_RESET,ans);
 	}
 
 	public static int validarCant() {

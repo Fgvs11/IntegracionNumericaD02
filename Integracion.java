@@ -88,5 +88,65 @@ public class Integracion {
         }
         System.out.printf("+-----------+-----------+-----------+%n");
     }
+    public double IntegracionNumerica(){
+        if (filaY.length == 2){
+            return Trapecios(0, filaY.length -1);
+        }
+        int n = filaY.length - 1;
+        int x = (int) n / 3;
+        int lim = x * 3;
+        while((n - lim) %2 != 0){
+            x--;
+            lim = x * 3;
+        }
+        double ans1 = 0;
+        double ans2 = 0;
+        if(x != 0){
+            ans1 = Simsom38(0, lim);
+        }
+        if(lim != n){
+            ans2 = Simsom13(lim, n);
+        }
+        return ans1 + ans2;
+    }
+
+    public double Trapecios(int i, int f){
+        double ans = 0;
+        for(int j = 1; j < f-i;j++ ){
+            ans += filaY[j+i];
+        }
+        ans *= 2;
+        ans += filaY[i] + filaY[f];
+        ans = (incremento/2) * ans;
+        return ans;
+    }
+
+    public double Simsom13(int i, int f){
+        double ans = 0;
+        for(int j = 1; j < f - i;j++ ){
+            if(j%2 == 0){
+                ans += 2* filaY[j + i];
+            }else{
+                ans += 4* filaY[j+i];
+            }
+        }
+        ans += filaY[i] + filaY[f];
+        ans *= incremento/3;
+        return ans;
+    }
+
+    public double Simsom38(int i, int f){
+        double ans = 0;
+        for(int j = 1; j < f - i;j++ ){
+            if(j%3 == 0){
+                ans += 2* filaY[j + i];
+            }else{
+                ans += 3* filaY[j + i];
+            }
+        }
+        ans += filaY[i] + filaY[f];
+        ans *= 3*incremento/8;
+        return ans;
+    }
     
 }
