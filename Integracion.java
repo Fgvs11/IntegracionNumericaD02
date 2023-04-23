@@ -127,7 +127,8 @@ public class Integracion {
         System.out.printf("+-----------+-----------+-----------+%n");
     }
     /**
-     * Contiene toda la logica atras de la separacion de intervalos para la aplicacion de las formulas, recordando que un numero arriba de 3 siempre puede ser descompuestos en la suma de multiplos de 3 y de 2
+     * Contiene toda la logica atras de la separacion de intervalos para la aplicacion de las formulas, recordando que un numero arriba de 3 siempre puede ser descompuestos en la suma de multiplos de 3 y de 2.<br>
+     * En este caso se intenta agotar las veces que se pueden agarrar intervalos de 3 y rellenar con intervalos de 2.
      * @return regresa el resultado de la integral total
      */
     public double IntegracionNumerica(){
